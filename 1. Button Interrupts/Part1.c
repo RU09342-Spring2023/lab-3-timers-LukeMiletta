@@ -1,8 +1,9 @@
+
 /*
  * Part1.c
  *
  *  Created on: Feb 11, 2023
- *      Author: Russell Trafford
+ *      Author: Luciano Miletta
  *
  *  This code is a template which will change the color of the LED being blinked using the interrupt routine.
  */
@@ -35,12 +36,18 @@ int main(void)
 
     while(1)
     {
-        if (LED_Color)
+        if (LED_Color == 0)
+        {
             P1OUT ^= BIT0;                  // P1.0 = toggle
+            P6OUT &= ~BIT6;
+        }
         else
+        {
             P6OUT ^= BIT6;                 // P6.6 = toggle
+            P1OUT &= ~BIT0;
+        }
         __delay_cycles(100000);
-    }
+}
 }
 
 
@@ -80,15 +87,19 @@ __interrupt void Port_2(void)
 {
     P2IFG &= ~BIT3;                         // Clear P1.3 IFG
 
-    if ( )       // @TODO Fill in this argument within the If statement to check if the interrupt was triggered off a rising edge.
+    if (P2IES & BIT3)      // @TODO Fill in this argument within the If statement to check if the interrupt was triggered off a rising edge.
     {
         LED_Color = 0;
+        P2IES &= ~BIT3;
         // @TODO Add code to change which edge the interrupt should be looking for next
     }
 
-    else if ( ) // @TODO Fill in this argument within the If statement to check if the interrupt was triggered off a falling edge.
+    else// @TODO Fill in this argument within the If statement to check if the interrupt was triggered off a falling edge.
     {
         LED_Color = 1;
+
+        P2IES |= BIT3;
+
         // @TODO Add code to change which edge the interrupt should be looking for next
     }
 }
