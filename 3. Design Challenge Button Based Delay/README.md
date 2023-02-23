@@ -50,3 +50,20 @@ You will need to upload your code, well documented. You will also need a README 
 - How are the peripherals configured (what modes, what settings)?
 - What design considerations did you have to take to account for things like the timer rollover?
 - How should the user use your code?
+
+
+REPORT 
+
+Question 1
+- My code has four different interuupts that are being used. one of the inturrupts basically resets the code to the default stage. The port 2 intuurept basically tells how long the button has been pressed down for. Then i have two timer inturrups where it calculates how long the button has been pressed and then used that to have the led blink at that specific speed. 
+
+
+Question 2
+- I have the pin 6 as the green led that will be blinking. I also have the pin 3 as the button that will be held down to see how long the led will blink. Then finally pin one will be the reset where it put it at the defalut speed.
+
+Question 3
+
+- The hardest part was making how long you held down the button to make that transfer into the speed of the led. 
+
+Question 4
+- The user basically holds down the right button as long as they want then the button will blink at the speed that the user held down the button.
